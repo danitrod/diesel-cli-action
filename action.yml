@@ -8,9 +8,15 @@ inputs:
     description: "URL of the database for diesel migrations"
     required: true
     default: test.db
+  sqlite:
+    description: "Set to true if using sqlite to provide owner permissions to db"
+    required: false
+    default: false
 runs:
   using: 'docker'
   image: 'Dockerfile'
+  env:
+    SQLITE: ${{ inputs.sqlite }}
   args:
     - ${{ inputs.migration_directories }}
     - ${{ inputs.database_url }}

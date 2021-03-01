@@ -6,7 +6,7 @@ set -eou pipefail
           pushd $directory
           diesel migration run --database-url $2
           if [[ $SQLITE = true ]] ; then
-              sudo chown -R $(whoami) $2
+              chown -R $(whoami) $2
           fi
           popd
       done

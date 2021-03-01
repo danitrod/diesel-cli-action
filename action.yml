@@ -4,8 +4,14 @@ inputs:
   migration_directories:
     description: "The list of migration directories to run against"
     required: true
+  database_url:
+    description: "URL of the database for diesel migrations"
+    required: true
+    default: test.db
 runs:
   using: 'docker'
   image: 'Dockerfile'
+  env: 
+    DATABASE_URL: ${{ inputs.database_url }}
   args:
     - ${{ inputs.migration_directories }}
